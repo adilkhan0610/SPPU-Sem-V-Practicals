@@ -1,6 +1,8 @@
 
-/ * SQL Queries - all types of Join, Sub-Query and View:
-Write at least 10 SQL queries for suitable database application using SQL DML statements. * /
+/ * 
+SQL Queries - all types of Join, Sub-Query and View:
+Write at least 10 SQL queries for suitable database application using SQL DML statements. 
+* /
 
 mysql> create database DBMSL_EXP3; 
 Query OK, 1 row affected (0.29 sec)
