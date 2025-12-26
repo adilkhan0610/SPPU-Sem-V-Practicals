@@ -1,4 +1,4 @@
-Database Management Systems Laboratory
+/*Database Management Systems Laboratory*/
 
 
 This folder contains codes for all Practicals that I've performed under Database Management Systems Laboratory.
