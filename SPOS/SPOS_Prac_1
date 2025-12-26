@@ -1,0 +1,117 @@
+/* 
+Design suitable Data structures and implement Pass-I and Pass-II of a two-pass assembler for pseudo-machine. 
+Implementation should consist of a few instructions from each category and few assembler directives. 
+The output of Pass-I (intermediate code file and symbol table) should be input for Pass-II. 
+*/
+
+
+import java.util.*;
+
+public class OnePassAssembler 
+{
+static Map <string, integer> symboltable = new HashMap<>(); 
+static Map <string, string> opcodetable = new HashMap<>();
+
+public static void main(string[] args) 
+{ 
+Scanner sc = new Scanner (System.in); 
+initializeOpcodeTable();
+
+System.out.println ("Enter number of lines in program : "); 
+int n = Integer.parseInt(sc.nextLine());
+
+List<String> program = new ArrayList<>(); 
+System.out.println ("Enter the program lines : "); 
+
+for (int i = 0 ; i < n ; i++) {
+program.add(sc.nextLine().trim());
+}
+
+int locationCounter = 200; 
+System.out.println ("Intermediate Code : "); 
+for (String line : program) {
+if (line.equals("STOP")) 
+{ System.out.println ("STOP"); 
+break;
+}
+
+String[] parts = line.split("\\s+"); 
+String instruction = parts[0];
+
+switch (instruction) 
+{
+case "START" : 
+{
+locationCounter = Integer.parseInt(parts[1]); 
+System.out.println ("START" + locationCounter); 
+break;
+}
+
+case "READ" :
+case "PRINT" : 
+{
+String operand = parts[1];
+if (!symbolTable.containsKey(operand)) 
+{
+symbolTable.put(operand, locationCounter++);
+}
+System.out.println (instruction + "" + operand); 
+break;
+}
+
+case "MOVEREG" : 
+{
+String reg = parts[1].replace(", ", "");
+String val = parts[2].replace(", ", "").replace(", ", ""); 
+System.out.println("MOVERG"+reg+","+val); 
+break;
+}
+
+case "ADD" :
+case "SUB" :
+case "DIV" : 
+{
+String reg1 = parts[1].replace(", ", ""); 
+String reg2 = parts[2];
+system.out.println(instruction+""+reg1+","+reg2); 
+break;
+}
+
+case "MOVEM":
+{
+String reg=parts[1].replace(",",""); string regTarget=parts[2];
+system.out.println("MOVEM"+reg+","+regTarget); break;
+}
+
+case "ADS":
+case "BDS":
+case "CDS":
+System.out.println(instruction); 
+break;
+
+default:
+system.out.println("Unknown instruction:"+ instruction);
+}
+System.out.println("\n Symbol Table:"); 
+for(Map.Entry<String,Integer>entry:symboltable.entrySet())
+{ system.out.println(Entry.getkey()+">"+Entry.getvalue());
+}
+sc.close();
+
+}
+
+void static void intializeOpcodeTable() 
+{ opcodeTable.put("READ", "01");
+ 
+opcodeTable.put("PRINT", "02");
+opcodeTable.put("MOVEREG", "03");
+opcodeTable.put("ADD", "04");
+opcodeTable.put("SUB", "05");
+opcodeTable.put("DIV", "06");
+opcodeTable.put("MOVEM", "07");
+opcodeTable.put("ADS", "08");
+opcodeTable.put("BDS", "09");
+opcodeTable.put("CDS", "10");
+opcodeTable.put("STOP", "11");
+}
+}
